@@ -23,8 +23,13 @@ repositories {
 extra["springCloudVersion"] = "2023.0.0"
 
 dependencies {
+
+	//kotlin
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+
 	//spring
 	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -43,6 +48,7 @@ dependencies {
 
 	//jackson
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
 
 	//QueryDsl
 	implementation ("com.querydsl:querydsl-jpa:5.0.0:jakarta")
@@ -63,13 +69,14 @@ dependencies {
 	implementation("io.github.oshai:kotlin-logging-jvm:5.1.1")
 
 	//aws
+	implementation("io.awspring.cloud:spring-cloud-aws-starter")
 	implementation("io.awspring.cloud:spring-cloud-aws-starter-s3")
-//	implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
-//	implementation("com.amazonaws:aws-lambda-java-events:3.11.2")
-//	implementation("io.awspring.cloud:spring-cloud-aws-starter-parameter-store") : config import 용도
-//	testImplementation("com.amazonaws:aws-java-sdk-core:1.12.481")
+	implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
 
-	implementation("org.springframework.boot:spring-boot-starter-web")
+	// test
+	testImplementation("org.testcontainers:localstack")
+	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.awaitility:awaitility")
 
 
 }

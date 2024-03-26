@@ -1,1 +1,1 @@
-rootProject.name = "notice-scrapper"
+rootProject.name = "notice-scraper"
