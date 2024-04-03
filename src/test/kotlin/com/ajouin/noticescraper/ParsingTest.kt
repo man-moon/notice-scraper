@@ -11,12 +11,14 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
 // 각 공지사항 별 mock data 파싱 테스트
 @SpringBootTest
+@ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ParsingTest @Autowired constructor(
     private val scrapingTask: ScrapingTask,
