@@ -14,6 +14,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import java.util.Date
 
 
@@ -21,6 +22,7 @@ import java.util.Date
 // processTopFixedNotices가 잘 동작하는지 확인
 
 @SpringBootTest
+@ActiveProfiles("test")
 class ScrapingTest @Autowired constructor(
     private val scrapingTask: ScrapingTask,
     private val generalNoticeStrategy: ScrapingStrategy,

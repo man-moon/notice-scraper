@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.mock.web.MockMultipartFile
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import software.amazon.awssdk.services.s3.S3Client
 
 @WebMvcTest
+@ActiveProfiles("test")
 class ImageUploadTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
