@@ -2,29 +2,27 @@ package com.ajouin.noticescraper.parser
 
 import com.ajouin.noticescraper.entity.SchoolNotice
 import com.ajouin.noticescraper.entity.NoticeType
+import com.ajouin.noticescraper.logger
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
 import java.util.*
 
-//간호대학
-//이걸로 변경 고려
-//https://www.ajoumc.or.kr/nursing/board/commBoardNRNewsList.do
 object NursingDepParser : Parser {
-    override val selector = "#nt-con-1 a"
+    override val selector = "#contents > article > section > div > div.cnt > div.tb_w > table > tbody > tr"
 
     override fun parseRow(noticeType: NoticeType, row: Element): SchoolNotice {
-        val id = row.select("a").attr("href").substringAfter("no=").toLong()
-        val title = row.select("a .ntp-inner strong").text()
-        val link = row.select("a").attr("href")
-        val modifiedLink = link.takeIf { it.startsWith("/nursing/") }?.replaceFirst("/nursing/", "") ?: link
+        val num = row.select("td.td_num").text()
+        val title = row.select("td.td_tit > a > span").text()
+        val id = row.select("td.td_tit > a").attr("href").substringAfter("no: ").substringBefore(" } )").toLong()
+        val link = "https://www.ajoumc.or.kr/nursing/board/commBoardNRNewsView.do?no=$id"
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val date: Date = dateFormat.parse(row.select("a .ntp-inner .con span").text())
+        val date: Date = dateFormat.parse(row.select("td.td_date").text())
 
         return SchoolNotice(
             title = title,
-            link = modifiedLink,
+            link = link,
             noticeType = noticeType,
-            isTopFixed = false,
+            isTopFixed = num == "공지",
             date = date,
             fetchId = id,
         )
