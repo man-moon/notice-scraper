@@ -32,7 +32,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
@@ -40,7 +39,6 @@ dependencies {
 	//spring cloud
 	implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp")
 	implementation("org.springframework.cloud:spring-cloud-starter-config")
-	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
 	//monitoring
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
