@@ -1,6 +1,9 @@
 package com.ajouin.noticescraper.entity
 
 import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 import java.util.Date
 
@@ -11,12 +14,11 @@ class SchoolNotice (
     var isTopFixed: Boolean,
     val date: Date,
     var views: Long = 0,
-    @Enumerated(EnumType.STRING)
-    val noticeType: NoticeType,
+    @Enumerated(EnumType.STRING) val noticeType: NoticeType,
 
     var fetchId: Long,
 
-    val createdAt: LocalDateTime = LocalDateTime.now(),
+    @CreationTimestamp val createdAt: LocalDateTime? = null,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

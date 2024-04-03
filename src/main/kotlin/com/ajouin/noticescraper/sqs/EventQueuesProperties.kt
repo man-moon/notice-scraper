@@ -6,4 +6,5 @@ import org.springframework.stereotype.Component
 @ConfigurationProperties(prefix = "events.queues")
 class EventQueuesProperties (
     val contentRequestQueue: String,
+    val noticeUpdateRequestQueue: String,
 )
