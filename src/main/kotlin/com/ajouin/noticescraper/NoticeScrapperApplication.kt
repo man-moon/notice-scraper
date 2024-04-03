@@ -7,7 +7,6 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @EnableConfigurationProperties(EventQueuesProperties::class)
-
 class NoticeScrapperApplication
 
 fun main(args: Array<String>) {

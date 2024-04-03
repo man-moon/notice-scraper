@@ -2,6 +2,7 @@ package com.ajouin.noticescraper.service
 
 import com.ajouin.noticescraper.logger
 import com.ajouin.noticescraper.service.strategy.ScrapingStrategy
+import com.ajouin.noticescraper.service.strategy.portal.GeneralNoticeStrategy
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -16,7 +17,7 @@ class ScrapingScheduler(
 ) {
     @Scheduled(fixedRate = 600000) // 10분마다
     fun execute() = runBlocking {
-        logger.info { "Start Scrapping" }
+        logger.info { "Start Scraping" }
         strategies.map { strategy ->
             launch {
                 try {
@@ -28,5 +29,6 @@ class ScrapingScheduler(
             }
         }.joinAll()
         notificationService.notifyCompletion()
+        logger.info { "End Scraping" }
     }
 }
