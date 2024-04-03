@@ -35,7 +35,7 @@ class ParsingTest @Autowired constructor(
     @ParameterizedTest(name = "{0}")
     @MethodSource("strategyProvider")
     @DisplayName("각 공지사항 파싱 테스트")
-    fun `parsingTestEachStrategies`(
+    fun parsingTestEachStrategies(
         noticeType: String,
         strategy: ScrapingStrategy,
         testData: StrategyTestData
@@ -90,4 +90,6 @@ val strategyTestDataMap = mapOf(
     "PsychologyNoticeStrategy" to StrategyTestData("PsychologyNotice", 10, 0),
     "SociologyNoticeStrategy" to StrategyTestData("SociologyNotice", 10, 0),
     "SportsLeisureNoticeStrategy" to StrategyTestData("SportsLeisureNotice", 10, 0),
+    "NursingNoticeStrategy" to StrategyTestData("NursingNotice", 10, 0),
+    "MedicineNoticeStrategy" to StrategyTestData("MedicineNotice", 10, 0),
 )
