@@ -12,24 +12,27 @@ object MedicalDepParser : Parser {
 
     override fun parseRow(noticeType: NoticeType, row: Element): SchoolNotice {
         val num = row.select("td.td_num").text()
-        val title = row.select("td.td_tit > a > span").text()
-        val id = row.select("td.td_tit > a").attr("href").substringAfter("no: ").substringBefore(" } )").toLong()
+        val title = row.select("td.td_qna > a > span").text()
+        val id = row.select("td.td_qna > a").attr("href").substringAfter("no: ").substringBefore(" } )").toLong()
         val link = "https://www.ajoumc.or.kr/medicine/board/commBoardUVNoticeView.do?no=$id"
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val date: Date = dateFormat.parse(row.select("td.td_date").text())
 
         return SchoolNotice(
-                title = title,
-                link = link,
-                noticeType = noticeType,
-                isTopFixed = num == "공지",
-                date = date,
-                fetchId = id,
-            )
+            title = title,
+            link = link,
+            noticeType = noticeType,
+            isTopFixed = num == "공지",
+            date = date,
+            fetchId = id,
+        )
     }
 
     override fun parseNotice(noticeType: NoticeType, row: Element, lastId: Long): SchoolNotice? {
         val notice = parseRow(noticeType, row)
-        return if (notice.fetchId > lastId || notice.isTopFixed) notice else null
+        return if (notice.fetchId > lastId || notice.isTopFixed)
+            notice
+        else
+            null
     }
 }
