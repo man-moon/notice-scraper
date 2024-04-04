@@ -28,7 +28,7 @@ class ScrapingTask(
         processTopFixedNotices(notices.filter { it.isTopFixed }, strategy, oldLastId)
         schoolNoticeRepository.saveAll(notices.filter { !it.isTopFixed })
 
-        notices.filter {it.fetchId > oldLastId }
+        notices.filter {it.fetchId > oldLastId && !it.isTopFixed }
             .forEach {
                 eventPublisher.publish(
                     SchoolNoticeCreatedEvent(

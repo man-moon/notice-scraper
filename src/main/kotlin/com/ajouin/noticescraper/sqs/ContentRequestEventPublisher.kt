@@ -19,7 +19,7 @@ class ContentRequestEventPublisher(
                 .payload(messagePayload)
         }
 
-        logger.info { "Message sent with payload $event" }
+        logger.info { "Message sent with payload: fetchId=${event.fetchId}, noticeType=${event.noticeType}" }
     }
 
     fun publish(event: SchoolNoticeUpdateEvent) {
@@ -29,7 +29,7 @@ class ContentRequestEventPublisher(
                 .payload(messagePayload)
         }
 
-        logger.info { "Message sent with payload $event" }
+        logger.info { "Message sent with payload: fetchId=${event.fetchId}, noticeType=${event.noticeType}" }
     }
 
 }
