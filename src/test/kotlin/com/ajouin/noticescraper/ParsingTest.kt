@@ -63,7 +63,7 @@ data class StrategyTestData(
 )
 
 val strategyTestDataMap = mapOf(
-    "GeneralNoticeStrategy" to StrategyTestData("GeneralNotice", 21, 11),
+    "GeneralNoticeStrategy" to StrategyTestData("GeneralNotice", 17, 7),
     "ScholarshipNoticeStrategy" to StrategyTestData("ScholarshipNotice", 19, 9),
     "DormitoryNoticeStrategy" to StrategyTestData("DormitoryNotice", 30, 20),
     "AppliedChemistryBiologicalEngineeringEmploymentNoticeStrategy" to StrategyTestData("AppliedChemistryBiologicalEngineeringEmploymentNotice", 11, 1),
@@ -94,4 +94,8 @@ val strategyTestDataMap = mapOf(
     "SportsLeisureNoticeStrategy" to StrategyTestData("SportsLeisureNotice", 10, 0),
     "NursingNoticeStrategy" to StrategyTestData("NursingNotice", 10, 0),
     "MedicineNoticeStrategy" to StrategyTestData("MedicineNotice", 10, 0),
+    "ArchitecturalEngineeringNoticeStrategy" to StrategyTestData("ArchitecturalEngineeringNotice", 1, 0),
+    "ArchitectureIntegratedEmploymentNoticeStrategy" to StrategyTestData("ArchitectureIntegratedEmploymentNotice", 10, 0),
+    "ArchitectureIntegratedNoticeStrategy" to StrategyTestData("ArchitectureIntegratedNotice", 16, 6),
+    "ArchitectureNoticeStrategy" to StrategyTestData("ArchitectureNotice", 8, 0),
 )
