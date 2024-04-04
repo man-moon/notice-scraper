@@ -24,8 +24,8 @@ class ScrapingTask(
     fun execute(strategy: ScrapingStrategy) {
         val doc = fetchDocument(strategy)
         val notices = parseDocument(doc, strategy)
-        processTopFixedNotices(notices.filter { it.isTopFixed }, strategy)
         val oldLastId = updateLastId(notices, strategy)
+        processTopFixedNotices(notices.filter { it.isTopFixed }, strategy, oldLastId)
         schoolNoticeRepository.saveAll(notices.filter { !it.isTopFixed })
 
         notices.filter {it.fetchId > oldLastId }
@@ -66,12 +66,13 @@ class ScrapingTask(
         return lastIdPerNoticeTypeRepository.findByNoticeType(strategy.noticeType)?.lastId ?: 0L
     }
 
-    fun processTopFixedNotices(newTopFixedNotices: List<SchoolNotice>, strategy: ScrapingStrategy) {
+    fun processTopFixedNotices(newTopFixedNotices: List<SchoolNotice>, strategy: ScrapingStrategy, lastId: Long) {
         val oldTopFixedNotices = schoolNoticeRepository.findAllByNoticeTypeAndIsTopFixedIsTrue(strategy.noticeType)
+        val newTopFixedNoticeIds = newTopFixedNotices.map { it.fetchId }.toSet()
 
-        // 기존 상단 고정 공지사항 중에서 새로 가져온 공지사항에 없는 것은 상단 고정 해제
+        // 기존에 있던 상단 공지사항이 사라진 경우
         oldTopFixedNotices.forEach { old ->
-            if (old.fetchId !in newTopFixedNotices.map { new -> new.fetchId }) {
+            if (old.fetchId !in newTopFixedNoticeIds) {
                 old.isTopFixed = false
                 schoolNoticeRepository.save(old)
                 eventPublisher.publish(
@@ -84,9 +85,9 @@ class ScrapingTask(
             }
         }
 
+        // 기존 공지사항이 새롭게 상단 고정된 경우
         newTopFixedNotices.forEach {
-            // 기존 공지사항이 상단 고정된 경우 업데이트
-            schoolNoticeRepository.findByFetchIdAndNoticeType(it.fetchId, it.noticeType)
+            schoolNoticeRepository.findByFetchIdAndNoticeTypeAndIsTopFixedIsFalse(it.fetchId, it.noticeType)
                 ?.let { existingNotice ->
                     existingNotice.isTopFixed = true
                     schoolNoticeRepository.save(existingNotice)
@@ -98,10 +99,27 @@ class ScrapingTask(
                         )
                     )
                 }
-                ?: run {
-                    schoolNoticeRepository.save(it)
-                }
         }
+
+        // 새롭게 추가된 공지사항이 바로 상단 고정된 경우
+        newTopFixedNotices.forEach {
+            if (it.fetchId > lastId) {
+                schoolNoticeRepository.save(it)
+                eventPublisher.publish(
+                    SchoolNoticeCreatedEvent(
+                        title = it.title,
+                        link = it.link,
+                        isTopFixed = it.isTopFixed,
+                        views = it.views,
+                        noticeType = it.noticeType,
+                        fetchId = it.fetchId,
+                        id = it.id
+                    )
+                )
+            }
+        }
+
+
     }
 
     // 기존의 lastId를 반환
