@@ -20,7 +20,6 @@ class ScrapingTask(
     private val lastIdPerNoticeTypeRepository: LastIdPerNoticeTypeRepository,
     private val eventPublisher: ContentRequestEventPublisher,
 ) {
-    @Transactional
     fun execute(strategy: ScrapingStrategy) {
         val doc = fetchDocument(strategy)
         val notices = parseDocument(doc, strategy)
