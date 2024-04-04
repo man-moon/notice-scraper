@@ -96,7 +96,7 @@ class ScrapingTest @Autowired constructor(
         )
 
         // when
-        scrapingTask.processTopFixedNotices(newNotices, generalNoticeStrategy)
+        scrapingTask.processTopFixedNotices(newNotices, generalNoticeStrategy, 3L)
         val topFixedNotices =
             schoolNoticeRepository.findAllByNoticeTypeAndIsTopFixedIsTrue(일반공지)
 
@@ -127,7 +127,7 @@ class ScrapingTest @Autowired constructor(
             ),
         )
         // when
-        scrapingTask.processTopFixedNotices(newNotices, generalNoticeStrategy)
+        scrapingTask.processTopFixedNotices(newNotices, generalNoticeStrategy, 3L)
         val topFixedNotices =
             schoolNoticeRepository.findAllByNoticeTypeAndIsTopFixedIsTrue(일반공지)
 
@@ -141,7 +141,7 @@ class ScrapingTest @Autowired constructor(
         // given
         val newNotices = listOf<SchoolNotice>()
         // when
-        scrapingTask.processTopFixedNotices(newNotices, generalNoticeStrategy)
+        scrapingTask.processTopFixedNotices(newNotices, generalNoticeStrategy, 3L)
         val topFixedNotices =
             schoolNoticeRepository.findAllByNoticeTypeAndIsTopFixedIsTrue(일반공지)
 
