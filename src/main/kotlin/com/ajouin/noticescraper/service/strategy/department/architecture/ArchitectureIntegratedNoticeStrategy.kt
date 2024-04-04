@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class ArchitectureIntegratedNoticeStrategy (
     parserFactory: ParserFactory
 ) : ScrapingStrategy {
-    override val url: String = "https://arch.ajou.ac.kr/arch/board/board01.jsp"
+    override val url: String = "https://arch.ajou.ac.kr/arch/board/total-notice.do"
     final override val noticeType = NoticeType.건축학과0
     override val parser = parserFactory.getParser(noticeType)
         ?: throw NoticeTypeNotFoundException()
