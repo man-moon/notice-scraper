@@ -122,6 +122,7 @@ class ScrapingTask(
     }
 
     // 기존의 lastId를 반환
+    @Transactional
     fun updateLastId(notices: List<SchoolNotice>, strategy: ScrapingStrategy): Long {
         val newLastId = notices.maxOfOrNull { it.fetchId } ?: 0L
 
