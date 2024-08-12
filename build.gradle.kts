@@ -13,7 +13,6 @@ group = "com.ajouin"
 version = "0.0.1-SNAPSHOT"
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -75,6 +74,7 @@ dependencies {
 	testImplementation("org.testcontainers:localstack")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.awaitility:awaitility")
+	implementation(kotlin("stdlib-jdk8"))
 
 
 }
@@ -95,4 +95,7 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+kotlin {
+	jvmToolchain(17)
 }
