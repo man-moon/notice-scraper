@@ -36,6 +36,7 @@ class ScrapingTask(
                         isTopFixed = it.isTopFixed,
                         views = it.views,
                         noticeType = it.noticeType,
+                        date = it.date,
                         fetchId = it.fetchId,
                         id = it.id
                     )
@@ -111,6 +112,7 @@ class ScrapingTask(
                         isTopFixed = it.isTopFixed,
                         views = it.views,
                         noticeType = it.noticeType,
+                        date = it.date,
                         fetchId = it.fetchId,
                         id = it.id
                     )
