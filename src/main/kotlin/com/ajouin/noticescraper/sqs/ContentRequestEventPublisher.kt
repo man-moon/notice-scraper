@@ -29,7 +29,7 @@ class ContentRequestEventPublisher(
                 .payload(messagePayload)
         }
 
-        logger.info { "Message sent with payload: fetchId=${event.fetchId}, noticeType=${event.noticeType}" }
+        logger.info { "Message(top fixed post changed) sent with payload: fetchId=${event.fetchId}, noticeType=${event.noticeType}" }
     }
 
 }
