@@ -16,6 +16,7 @@ data class SchoolNoticeCreatedEvent @JsonCreator constructor (
     @JsonProperty("views") val views: Long,
     @JsonProperty("noticeType") @Enumerated(EnumType.STRING)
     val noticeType: NoticeType,
+    @JsonProperty("date") val date: Date,
     @JsonProperty("fetchId") val fetchId: Long,
     @JsonProperty("id") val id: Long?,
 )
