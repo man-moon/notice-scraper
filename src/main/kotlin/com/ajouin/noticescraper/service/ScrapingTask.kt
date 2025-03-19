@@ -103,7 +103,7 @@ class ScrapingTask(
 
         // 새롭게 추가된 공지사항이 바로 상단 고정된 경우
         newTopFixedNotices.forEach {
-            if (it.fetchId > lastId) {
+            if (schoolNoticeRepository.findByFetchId(it.fetchId) == null) {
                 schoolNoticeRepository.save(it)
                 eventPublisher.publish(
                     SchoolNoticeCreatedEvent(
@@ -119,8 +119,6 @@ class ScrapingTask(
                 )
             }
         }
-
-
     }
 
     // 기존의 lastId를 반환

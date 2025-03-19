@@ -11,4 +11,5 @@ interface SchoolNoticeRepository: JpaRepository<SchoolNotice, Long> {
 
     fun findAllByNoticeTypeAndIsTopFixedIsTrue(noticeType: NoticeType): List<SchoolNotice>
     fun findByFetchIdAndNoticeTypeAndIsTopFixedIsFalse(fetchId: Long, noticeType: NoticeType): SchoolNotice?
+    fun findByFetchId(fetchId: Long): SchoolNotice?
 }
