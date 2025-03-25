@@ -18,7 +18,7 @@ class ParserConfiguration {
             생활관 to NewMainParser,
 
             // 단과대
-            경영대학 to NewMainParser,
+            경영대학 to NewSubBN01CateParser,
             공과대학 to NewMainParser,
             인문대학 to NewMainParser,
             정보통신대학 to NewMainParser,
