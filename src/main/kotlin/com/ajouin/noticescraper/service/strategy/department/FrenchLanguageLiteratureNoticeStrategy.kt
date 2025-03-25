@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class FrenchLanguageLiteratureNoticeStrategy (
     parserFactory: ParserFactory
 ) : ScrapingStrategy {
-    override val url: String = "https://kor.ajou.ac.kr/kor/academic/notice.do"
+    override val url: String = "https://france.ajou.ac.kr/france/notice/notice.do"
     final override val noticeType = NoticeType.불어불문학과
     override val parser = parserFactory.getParser(noticeType)
         ?: throw NoticeTypeNotFoundException()

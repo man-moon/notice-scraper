@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class HistoryNoticeStrategy (
     parserFactory: ParserFactory
 ) : ScrapingStrategy {
-    override val url: String = "https://kor.ajou.ac.kr/kor/academic/notice.do"
+    override val url: String = "https://history.ajou.ac.kr/history/admission/notice.do"
     final override val noticeType = NoticeType.사학과
     override val parser = parserFactory.getParser(noticeType)
         ?: throw NoticeTypeNotFoundException()

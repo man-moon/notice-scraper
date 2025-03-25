@@ -64,18 +64,13 @@ class ParserConfiguration {
             경영학과 to NewMainParser,
             건설시스템공학과 to NewMainParser,
             융합시스템공학과 to NewSubBN02Parser,
-            문화콘텐츠학과 to NewMainParser,
             국방디지털융합학과 to NewMainParser,
             e비즈니스학과 to NewMainParser,
             경제학과 to NewMainParser,
-            영어영문학과 to NewMainParser,
             환경안전공학과 to NewMainParser,
             금융공학과 to NewMainParser,
-            불어불문학과 to NewMainParser,
             글로벌경영학과 to NewMainParser,
-            사학과 to NewMainParser,
             지능형반도체공학과 to NewSubBN01CateParser,
-            국어국문학과 to NewMainParser,
             물리학과 to NewMainParser,
             정치외교학과 to NewMainParser,
             심리학과 to NewMainParser,
@@ -83,6 +78,13 @@ class ParserConfiguration {
             사회학과 to NewMainParser,
             스포츠레저학과 to NewMainParser,
             교통시스템공학과 to NewMainParser,
+
+            문화콘텐츠학과 to NewMainParser,
+            국어국문학과 to NewMainParser,
+            사학과 to NewMainParser,
+            불어불문학과 to NewMainParser,
+            영어영문학과 to NewMainParser,
+
         )
 
         return ParserFactory(parserMap)
